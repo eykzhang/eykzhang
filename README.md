@@ -13,9 +13,11 @@ framework — see [mobile-ai](https://github.com/eykzhang/mobile-ai) for a write
 - 🧠 **[battle-engine](https://github.com/eykzhang/battle-engine)** — an ML/search
   battle engine for competitive Pokémon ("Stockfish for Pokémon"), and my hands-on
   path into machine learning: classical game-tree search → supervised learning on
-  millions of human replays → reinforcement learning via self-play. Phase 1
-  (classical search) gates are met: 84.8% win rate vs. a max-damage baseline, 59.2%
-  vs. a scripted heuristic, over 500+ benchmarked battles each.
+  human replays → reinforcement learning via self-play. Phase 1 (classical search)
+  gates are met: 84.8% win rate vs. a max-damage baseline, 59.2% vs. a scripted
+  heuristic, over 500+ benchmarked battles each. Phase 2's ML pipeline (replay data →
+  learned state encoding → trained win-probability model, wired into the same
+  search) is built end-to-end and benchmarked; still tuning before it beats Phase 1.
 - 🎮 **[BattleBrain](https://github.com/eykzhang/battle-brain)** — a native iOS
   companion app for Pokémon Showdown that wraps the engine: team builder,
   competitive database, and engine-powered replay analysis, backed by serverless AWS
@@ -35,8 +37,11 @@ way real game-analysis products are.
   hundreds of measured battles. Phase 1's classical search bot (hand-crafted
   evaluation + expected-damage lookahead) beats scripted baselines 84.8% and 59.2%
   head-to-head; getting there included finding and fixing a root-cause evaluation
-  bug via code review, verified by rerunning the full benchmark. End-state mirrors
-  Stockfish: train in Python, search in C++.
+  bug via code review, verified by rerunning the full benchmark. Phase 2 built the ML
+  side end-to-end — a replay data pipeline, a learned state encoding, and a trained
+  win-probability model wired into the same search — with two further rounds of code
+  review catching real correctness bugs before trusting the numbers. End-state
+  mirrors Stockfish: train in Python, search in C++.
 - **[BattleBrain](https://github.com/eykzhang/battle-brain)** *(Swift, SwiftUI,
   SwiftData, AWS)* — the product on top: full-depth team builder, competitive
   database, and turn-by-turn replay analysis with the engine's win-probability graph
