@@ -4,20 +4,21 @@ I'm a Mathematics and Computer Science student at Duke University with interests
 iOS development, AI, and building software that transforms complex data into useful
 products.
 
-Currently, I'm a Software Developer with Duke OIT, where I'm helping build an
+From May–August 2026, I was a Software Developer with Duke OIT, where I built an
 AI-powered nutrition planning application using SwiftUI and Apple's Foundation Models
-framework.
+framework — see [mobile-ai](https://github.com/eykzhang/mobile-ai) for a writeup.
 
 ## Currently Working On
 
 - 🧠 **[battle-engine](https://github.com/eykzhang/battle-engine)** — an ML/search
   battle engine for competitive Pokémon ("Stockfish for Pokémon"), and my hands-on
   path into machine learning: classical game-tree search → supervised learning on
-  millions of human replays → reinforcement learning via self-play
+  millions of human replays → reinforcement learning via self-play. Phase 1
+  (classical search) gates are met: 84.8% win rate vs. a max-damage baseline, 59.2%
+  vs. a scripted heuristic, over 500+ benchmarked battles each.
 - 🎮 **[BattleBrain](https://github.com/eykzhang/battle-brain)** — a native iOS
   companion app for Pokémon Showdown that wraps the engine: team builder,
   competitive database, and engine-powered replay analysis, backed by serverless AWS
-- 🍎 Building an AI-powered nutrition planning app with Duke OIT
 
 ## Featured Projects
 
@@ -31,8 +32,11 @@ way real game-analysis products are.
   machine learning. Pokémon is a genuinely hard AI problem — simultaneous moves,
   stochastic outcomes, and hidden information all at once — and the engine is built
   in staged phases, each gated on beating the previous version head-to-head over
-  hundreds of measured battles. End-state mirrors Stockfish: train in Python, search
-  in C++.
+  hundreds of measured battles. Phase 1's classical search bot (hand-crafted
+  evaluation + expected-damage lookahead) beats scripted baselines 84.8% and 59.2%
+  head-to-head; getting there included finding and fixing a root-cause evaluation
+  bug via code review, verified by rerunning the full benchmark. End-state mirrors
+  Stockfish: train in Python, search in C++.
 - **[BattleBrain](https://github.com/eykzhang/battle-brain)** *(Swift, SwiftUI,
   SwiftData, AWS)* — the product on top: full-depth team builder, competitive
   database, and turn-by-turn replay analysis with the engine's win-probability graph
@@ -41,13 +45,17 @@ way real game-analysis products are.
   infrastructure-as-code AWS backend (Lambda, API Gateway, DynamoDB, S3,
   EventBridge).
 
-### 🍎 AI Nutrition App *(Duke OIT, in development)*
-An AI-powered nutrition planning application built with SwiftUI, SwiftData, and
-Apple's Foundation Models framework.
+### 🍎 [Mobile AI](https://github.com/eykzhang/mobile-ai) *(Duke OIT, built May–Aug 2026)*
+An on-device AI dining and nutrition assistant for Duke students — SwiftUI, SwiftData,
+and an orchestrator + sub-agent pipeline over Apple's Foundation Models framework. Built
+and functional, not yet released: launch is gated on Duke's dining-data provider
+releasing a production client API (needed for live nutrition/allergen accuracy) and on
+TestFlight testing. Repo is a portfolio writeup with a demo, since the source lives on
+Duke's internal GitLab per university policy.
 
-### ♠ [Poker Hand Aggregator](https://github.com/eykzhang/poker-bot)
-A Python application for parsing PokerNow hand histories and identifying strategic
-decision-making patterns across sessions.
+### ♠ [PokerNow Analyzer](https://github.com/eykzhang/pokernow-analyzer)
+A Python application for parsing PokerNow hand histories into a SQLite database and
+surfacing pot-odds/EV analysis to identify strategic decision-making leaks.
 
 ### 📈 [Entropy Trading Strategy](https://github.com/eykzhang/entropy-trading-strategy)
 A backtested and verified trading strategy built on entropy-based signal recognition,
