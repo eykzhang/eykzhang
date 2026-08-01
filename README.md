@@ -17,7 +17,11 @@ framework — see [mobile-ai](https://github.com/eykzhang/mobile-ai) for a write
   gates are met: 84.8% win rate vs. a max-damage baseline, 59.2% vs. a scripted
   heuristic, over 500+ benchmarked battles each. Phase 2's ML pipeline (replay data →
   learned state encoding → trained win-probability model, wired into the same
-  search) is built end-to-end and benchmarked; still tuning before it beats Phase 1.
+  search) is built end-to-end and benchmarked. Phase 3 (PPO self-play RL) has its
+  training pipeline built and independently reviewed twice — masked action sampling,
+  warm-starting from the Phase 2 models, self-play against frozen past versions —
+  with a real bug found and fixed via replay-based diagnosis along the way; strength
+  verification against Phase 2 is next.
 - 🎮 **[BattleBrain](https://github.com/eykzhang/battle-brain)** — a native iOS
   companion app for Pokémon Showdown that wraps the engine: team builder,
   competitive database, and engine-powered replay analysis, backed by serverless AWS
@@ -40,8 +44,16 @@ way real game-analysis products are.
   bug via code review, verified by rerunning the full benchmark. Phase 2 built the ML
   side end-to-end — a replay data pipeline, a learned state encoding, and a trained
   win-probability model wired into the same search — with two further rounds of code
-  review catching real correctness bugs before trusting the numbers. End-state
-  mirrors Stockfish: train in Python, search in C++.
+  review catching real correctness bugs before trusting the numbers. Phase 3 (PPO
+  self-play reinforcement learning) is built and reviewed: reconciled two different
+  action-space schemes between the RL library and the existing models, switched to
+  masked action sampling after a review found illegal moves were silently
+  misattributing training credit, and warm-started the policy from the Phase 2
+  models by reshaping its network to match theirs exactly. Diagnosing a training
+  plateau via replay inspection (the same technique used in Phases 1 and 2) surfaced
+  a real bug: the policy exploiting a state-encoding blind spot to repeatedly
+  re-attempt a move immediately after it had just failed. End-state mirrors
+  Stockfish: train in Python, search in C++.
 - **[BattleBrain](https://github.com/eykzhang/battle-brain)** *(Swift, SwiftUI,
   SwiftData, AWS)* — the product on top: full-depth team builder, competitive
   database, and turn-by-turn replay analysis with the engine's win-probability graph
